@@ -6,6 +6,11 @@ var posterQuote = document.querySelector('.poster-quote');
 var showRandomButton = document.querySelector('.show-random');
 var savePosterButton = document.querySelector('.save-poster');
 var showSavedButton = document.querySelector('.show-saved');
+var makeNewPosterBtn = document.querySelector('.show-form');
+var posterForm = document.querySelector('.poster-form');
+var mainPoster = document.querySelector('.main-poster');
+
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -111,6 +116,8 @@ var currentPoster;
 // event listeners go here 👇
 window.onload = generateRandomPoster();
 
+makeNewPosterBtn.addEventListener('click', makeYourOwnPosterForm)
+
 showRandomButton.addEventListener('click', function() {
 generateRandomPoster();
 });
@@ -140,3 +147,8 @@ posterImage.src = poster.imageURL
 posterTitle.innerText = poster.title
 posterQuote.innerText = poster.quote
 };
+
+function makeYourOwnPosterForm() {
+  posterForm.classList.remove('hidden');
+  mainPoster.classList.add('hidden');
+}
