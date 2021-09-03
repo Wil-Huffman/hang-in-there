@@ -19,9 +19,11 @@ var savedPostersSection = document.querySelector('.saved-posters');
 var backToMainBtn = document.querySelector('.back-to-main');
 var nevermindBtn = document.querySelector('.show-main');
 
-// var showRandomButton = document.querySelector('.show-random');
-// var savePosterButton = document.querySelector('.save-poster');
-// var showSavedButton = document.querySelector('.show-saved');
+//input values variables
+var imageInput = document.querySelector('#poster-image-url');
+var titleInput = document.querySelector('#poster-title');
+var quoteInput = document.querySelector('#poster-quote')
+var showMyPosterBtn = document.querySelector('.make-poster')
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -136,11 +138,13 @@ showSavedPosterBtn.addEventListener('click', showSavedPosterArea)
 // saveNewPosterBtn.addEventListener('click', saveNewPoster)
 
 backToMainBtn.addEventListener('click', backToMainPage)
+nevermindBtn.addEventListener('click', backToMainPage)
 
-// showMainBtn.addEventListener('click', returnToMainPage)
-// showRandomButton.addEventListener('click', function() {
-// generateRandomPoster();
-// });
+//inputEventListeners
+imageInput.addEventListener('keyup', saveImageInput)
+titleInput.addEventListener('keyup', saveTitleInput)
+quoteInput.addEventListener('keyup', saveQuoteInput)
+
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -186,17 +190,19 @@ function showSavedPosterArea(){
 //returnToMainPage
 function backToMainPage() {
   savedPostersSection.classList.add('hidden');
+  posterForm.classList.add('hidden');
   mainPoster.classList.remove('hidden');
 }
 
-//     randomPoster = new Poster(image, title, quote)
-//     setHomeCover(randomPoster)   
-//     console.log('Title', title)
-// };
+//inputFormFunctions
+function saveImageInput(){
+  imageInput.src = imageInput.value
+}
 
-// function setHomeCover(poster){
-// posterImage.src = poster.imageURL
-// posterTitle.innerText = poster.title
-// posterQuote.innerText = poster.quote
-// };
+function saveTitleInput() {
+  titleInput.innerText = titleInput.value
+}
 
+function saveQuoteInput() {
+  quoteInput.innerText = quoteInput.value
+}
