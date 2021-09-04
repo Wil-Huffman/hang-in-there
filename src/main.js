@@ -14,14 +14,17 @@ var posterForm = document.querySelector('.poster-form');
 
 //Save posters
 var savedPostersSection = document.querySelector('.saved-posters');
+var savedPostersGrid = document.querySelector('.saved-posters-grid')
 
 //backToMainButtons
 var backToMainBtn = document.querySelector('.back-to-main');
 var nevermindBtn = document.querySelector('.show-main');
 
-// var showRandomButton = document.querySelector('.show-random');
-// var savePosterButton = document.querySelector('.save-poster');
-// var showSavedButton = document.querySelector('.show-saved');
+//input values variables
+var imageInput = document.querySelector('#poster-image-url');
+var titleInput = document.querySelector('#poster-title');
+var quoteInput = document.querySelector('#poster-quote')
+var showMyPosterBtn = document.querySelector('.make-poster')
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -133,14 +136,14 @@ makeNewPosterBtn.addEventListener('click', makeYourOwnPosterForm)
 
 showSavedPosterBtn.addEventListener('click', showSavedPosterArea)
 
-// saveNewPosterBtn.addEventListener('click', saveNewPoster)
+saveNewPosterBtn.addEventListener('click', saveNewPoster)
 
 backToMainBtn.addEventListener('click', backToMainPage)
+nevermindBtn.addEventListener('click', backToMainPage)
 
-// showMainBtn.addEventListener('click', returnToMainPage)
-// showRandomButton.addEventListener('click', function() {
-// generateRandomPoster();
-// });
+showMyPosterBtn.addEventListener('click', generateCustomPoster)
+
+
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -148,9 +151,7 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-// function createPoster(image, title, quote) {
-//   return new Poster(image, title, quote)
-// }
+
 
 //mainPageSectionWithButtons
 function generateRandomPoster(){
@@ -181,22 +182,44 @@ function makeYourOwnPosterForm() {
 function showSavedPosterArea(){
   savedPostersSection.classList.remove('hidden');
   mainPoster.classList.add('hidden');
+  // createGrid();
 }
+//   function createGrid(savedPosters) {
+//  for (var i = 0; i < savedPosters.length; i ++){
+//     savedPostersGrid.innerHTML =
+//     `<article class="poster">
+//       <img class="poster-img" src=${savedPosters[i].image} alt=${savedPosters[i].title} to see here">
+//       <h1 class=${savedPosters[i].title}>Title</h1>
+//       <h3 class=${savedPosters[i].quote}>Quote</h3>
+//     </article>`
+//   }
+// }
 
 //returnToMainPage
 function backToMainPage() {
   savedPostersSection.classList.add('hidden');
+  posterForm.classList.add('hidden');
   mainPoster.classList.remove('hidden');
 }
 
-//     randomPoster = new Poster(image, title, quote)
-//     setHomeCover(randomPoster)   
-//     console.log('Title', title)
-// };
 
-// function setHomeCover(poster){
-// posterImage.src = poster.imageURL
-// posterTitle.innerText = poster.title
-// posterQuote.innerText = poster.quote
-// };
+function generateCustomPoster(event){
+  event.preventDefault();
+  posterImage.src = imageInput.value;
+  posterTitle.innerText = titleInput.value;
+  posterQuote.innerText = quoteInput.value;
+  // currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  posterForm.classList.add('hidden');
+  mainPoster.classList.remove('hidden');
+}
 
+//addEventListener for Save Poster button
+//function that creates new instance
+//each field shoudl push to the respective array
+//new instance should be pushed to saved posters array
+
+function saveNewPoster(){
+  currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  savedPosters.push(currentPoster);
+
+}
