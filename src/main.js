@@ -141,9 +141,10 @@ backToMainBtn.addEventListener('click', backToMainPage)
 nevermindBtn.addEventListener('click', backToMainPage)
 
 //inputEventListeners
-imageInput.addEventListener('keyup', saveImageInput)
-titleInput.addEventListener('keyup', saveTitleInput)
-quoteInput.addEventListener('keyup', saveQuoteInput)
+// imageInput.addEventListener('keyup', saveImageInput)
+// titleInput.addEventListener('keyup', saveTitleInput)
+// quoteInput.addEventListener('keyup', saveQuoteInput)
+showMyPosterBtn.addEventListener('click', generateCustomPoster)
 
 
 // functions and event handlers go here 👇
@@ -195,14 +196,23 @@ function backToMainPage() {
 }
 
 //inputFormFunctions
-function saveImageInput(){
-  imageInput.src = imageInput.value
-}
-
-function saveTitleInput() {
-  titleInput.innerText = titleInput.value
-}
-
-function saveQuoteInput() {
-  quoteInput.innerText = quoteInput.value
+// function saveImageInput(){
+//   imageInput.src = imageInput.value
+// }
+//
+// function saveTitleInput() {
+//   titleInput.innerText = titleInput.value
+// }
+//
+// function saveQuoteInput() {
+//   quoteInput.innerText = quoteInput.value
+// }
+function generateCustomPoster(event){
+  event.preventDefault();
+  posterImage.src = imageInput.value;
+  posterTitle.innerText = titleInput.value;
+  posterQuote.innerText = quoteInput.value;
+  currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  posterForm.classList.add('hidden');
+  mainPoster.classList.remove('hidden');
 }
