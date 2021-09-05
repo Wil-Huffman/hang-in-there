@@ -227,3 +227,18 @@ function saveNewPoster() {
   titles.push(titleInput.value);
   quotes.push(quoteInput.value);
 }
+
+savedPostersSection.addEventListener('dblclick',removePoster)
+function removePoster(){
+  var targetPosterId = parseInt(event.target.parentNode.id)
+  for (var i = 0; i < savedPosters.length; i++){
+    if (targetPosterId === savedPosters[i].id){
+      savedPosters.splice(i, 1);
+      event.target.parentNode.remove()
+    }
+  }
+
+}
+
+
+
