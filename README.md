@@ -16,7 +16,7 @@
 
 
 ---
-## Instructions for users
+## Instructions for users:
 *This webpage is designed to view, create and save motivational posters that you can use to send to others for a little encouragement!*
 
 
@@ -27,7 +27,7 @@
 
 
     a. Add a web address to a photo or giph of your choosing inside the ‘Image URL’ box
-    
+     
     
     b. Add a title inside the ‘Motivational Title’ box
     
