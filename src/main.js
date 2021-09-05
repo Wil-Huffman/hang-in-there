@@ -216,7 +216,7 @@ function generateCustomPoster(event) {
 
 //if the loop runs without finding a match, it will exit the for loop and push new poster
 function saveNewPoster() {
-  currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText);
   for (var i = 0; i < savedPosters.length; i++) {
     if (savedPosters[i].imageURL === currentPoster.imageURL && savedPosters[i].title === currentPoster.title && savedPosters[i].quote === currentPoster.quote) {
       return;
