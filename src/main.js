@@ -154,15 +154,15 @@ function getRandomIndex(array) {
 
 
 //mainPageSectionWithButtons
-function generateRandomPoster(){
-    var image = images[getRandomIndex(images)]
-    var title = titles[getRandomIndex(titles)]
-    var quote = quotes[getRandomIndex(quotes)]
-    var randomPoster = new Poster(image, title, quote)
-    setHomeCover(randomPoster)
+function generateRandomPoster() {
+  var image = images[getRandomIndex(images)]
+  var title = titles[getRandomIndex(titles)]
+  var quote = quotes[getRandomIndex(quotes)]
+  var randomPoster = new Poster(image, title, quote)
+  setHomeCover(randomPoster)
 };
 
-function setHomeCover(poster){
+function setHomeCover(poster) {
   posterImage.src = poster.imageURL
   posterTitle.innerText = poster.title
   posterQuote.innerText = poster.quote
@@ -179,21 +179,23 @@ function makeYourOwnPosterForm() {
   mainPoster.classList.add('hidden');
 }
 
-function showSavedPosterArea(){
+function showSavedPosterArea() {
   savedPostersSection.classList.remove('hidden');
   mainPoster.classList.add('hidden');
-  // createGrid();
+  createGrid();
 }
-//   function createGrid(savedPosters) {
-//  for (var i = 0; i < savedPosters.length; i ++){
-//     savedPostersGrid.innerHTML =
-//     `<article class="poster">
-//       <img class="poster-img" src=${savedPosters[i].image} alt=${savedPosters[i].title} to see here">
-//       <h1 class=${savedPosters[i].title}>Title</h1>
-//       <h3 class=${savedPosters[i].quote}>Quote</h3>
-//     </article>`
-//   }
-// }
+
+function createGrid() {
+  savedPostersGrid.innerHTML = "";
+  for (var i = 0; i < savedPosters.length; i++) {
+    savedPostersGrid.innerHTML +=
+      `<article class="mini-poster" id=${savedPosters[i].id}>
+      <img id=${savedPosters[i].id} class="poster-img" src=${savedPosters[i].imageURL} alt=${savedPosters[i].title}">
+      <h2 id=${savedPosters[i].id}>${savedPosters[i].title}</h2>
+      <h4 id=${savedPosters[i].id}>${savedPosters[i].quote}</h4>
+    </article>`
+  }
+}
 
 //returnToMainPage
 function backToMainPage() {
@@ -202,8 +204,7 @@ function backToMainPage() {
   mainPoster.classList.remove('hidden');
 }
 
-
-function generateCustomPoster(event){
+function generateCustomPoster(event) {
   event.preventDefault();
   posterImage.src = imageInput.value;
   posterTitle.innerText = titleInput.value;
@@ -213,13 +214,16 @@ function generateCustomPoster(event){
   mainPoster.classList.remove('hidden');
 }
 
-//addEventListener for Save Poster button
-//function that creates new instance
-//each field shoudl push to the respective array
-//new instance should be pushed to saved posters array
-
-function saveNewPoster(){
+//if the loop runs without finding a match, it will exit the for loop and push new poster
+function saveNewPoster() {
   currentPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].imageURL === currentPoster.imageURL && savedPosters[i].title === currentPoster.title && savedPosters[i].quote === currentPoster.quote) {
+      return;
+    }
+  }
   savedPosters.push(currentPoster);
-
+  images.push(imageInput.value);
+  titles.push(titleInput.value);
+  quotes.push(quoteInput.value);
 }
